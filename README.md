@@ -1,4 +1,3 @@
-```markdown
 # ⚡ Cyber-Attack & Defense Simulator - Team C
 
 Welcome to the official Team C repository (Letizia, Simone, Shayan, Soheil).  
@@ -24,7 +23,7 @@ This manual explains our team workflow so we don't overwrite or break each other
    ```bash
    git clone [https://github.com/rimosoma/cyber-grid-sim-team-c.git](https://github.com/rimosoma/cyber-grid-sim-team-c.git)
 
-```
+
 
 4. Enter the project folder:
 ```bash
