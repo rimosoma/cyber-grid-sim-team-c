@@ -1,0 +1,14 @@
+# Electrical grid (WP1, WP4, WP5)
+pandapower==2.14.6
+numpy==1.26.4
+scipy==1.13.0
+pandas==2.2.1
+
+# Co-Simulation (WP6)
+helics==3.5.2
+
+# Dashboard and Backend (WP7)
+fastapi==0.110.0
+uvicorn==0.29.0
+pydantic==2.6.4
+websockets==12.0
