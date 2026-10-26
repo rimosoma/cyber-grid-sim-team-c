@@ -1,12 +1,13 @@
 ```markdown
 # ⚡ Cyber-Attack & Defense Simulator - Team C
 
-Welcome to the official Team C repository (Letizia, Simone, Shayan, Soheil).
+Welcome to the official Team C repository (Letizia, Simone, Shayan, Soheil).  
 This manual explains our team workflow so we don't overwrite or break each other's code.
 
 ---
 
 ## 🛠️ Phase 0: Grant Access (Simone only)
+
 1. Go to the repository page on GitHub.
 2. Click **Settings** > **Collaborators** > **Add people**.
 3. Add the GitHub usernames for Letizia, Shayan, and Soheil.
@@ -14,17 +15,24 @@ This manual explains our team workflow so we don't overwrite or break each other
 ---
 
 ## 📥 Phase 1: The First Time (Clone)
+
 **You only do this ONCE.** This links a folder on your PC to the GitHub server.
+
 1. Open your terminal.
 2. Navigate to where you want to save the project (e.g., `cd Documents`).
 3. Clone the repository:
    ```bash
    git clone [https://github.com/rimosoma/cyber-grid-sim-team-c.git](https://github.com/rimosoma/cyber-grid-sim-team-c.git)
 
+```
 
 4. Enter the project folder:
 ```bash
 cd cyber-grid-sim-team-c
+
+```
+
+
 
 ---
 
@@ -33,10 +41,13 @@ cd cyber-grid-sim-team-c
 ⛔ **GOLDEN RULE & GITHUB PROTECTION:** The `main` branch contains only perfect, tested code. **GitHub blocks any direct modifications to `main`.** You MUST create a separate branch for each task, work there locally, and ask for permission to merge only when the task is fully finished.
 
 Follow this exact sequence every time you start a new task on the Gantt chart.
+
 *(Note: These commands are exactly the same on Windows, Mac, and Linux)*
 
 ### Step 1: Update your local code (Pull)
+
 Always start by getting the latest approved team code from the server:
+
 ```bash
 git checkout main
 git pull
@@ -86,7 +97,6 @@ Your finished code is now online. To merge it into `main`:
 3. Click **Create pull request**.
 4. Ask a teammate on WhatsApp to review and approve it. Once approved, it officially becomes part of `main`.
 
-```
 ---
 
 ## 📁 Phase 3: Folder Structure (Who does what)
@@ -121,6 +131,7 @@ git status
 ```
 
 **I tried to `git pull` but I got a weird error and it blocked me:**
+
 This means you have uncommitted changes on your PC. Save them first (`git add .` + `git commit -m "saving before pull"`) and then try `git pull` again.
 
 ```
