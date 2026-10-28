@@ -12,8 +12,8 @@ This manual explains how to configure your PC for the first time, how to use the
 
 ---
 
-## 💻 Phase 1: The First Time (Clone + Docker & Dev Container Setup)
-**You only do this ONCE.** This links a folder on your PC to the GitHub server and starts the Linux "virtual computer" (Dev Container) which already contains Python 3.10, C++, `pandapower`, `HELICS`, `FastAPI`, and `pytest` pre-installed.
+## 💻 Phase 1: The First Time (Clone + Setup)
+**⚠️ ATTENTION: You only do this phase ONCE in your life.** This phase is strictly for downloading the repository for the first time and setting up the software. **Do not use this phase for your daily coding work.** For your daily programming routine, jump to Phase 2.
 
 ### Step 1.1: Software Prerequisites (Windows or Mac)
 Before starting, ensure you have the following installed on your PC:
@@ -34,6 +34,8 @@ Enter the project folder:
 
 Bash
 cd cyber-grid-sim-team-c
+(Note: During this first setup phase, you stay on the main branch. You do NOT create your task branch yet. Branch creation is explained in Phase 2).
+
 ### Step 1.3: Enter the Docker Dev Container from VS Code
 To avoid the "it works on my machine" problem, we do not use the Python installed on Windows or Mac. Instead, we all work inside the Docker container configured in the hidden .devcontainer folder:
 
@@ -51,29 +53,22 @@ In the bottom-left green rectangle, you will read: Dev Container: Cyber-Grid Sim
 
 Open the integrated terminal in VS Code (Terminal > New Terminal) and type pip list: you will see pandapower, helics, scipy, fastapi, and pytest ready to go!
 
-Step 1.4: How to Close Your Work at the End of the Day
-On VS Code: Click the green rectangle in the bottom-left and choose Close Remote Connection (or simply close the VS Code window).
-
-On Docker Desktop: If you want to free up your PC's RAM when you are done studying, open Docker Desktop, go to Containers, and press the Stop (⏹️) button next to the project container.
-
 ## 🔄 Phase 2: Daily Workflow (The Git Pipeline)
 ⛔ GOLDEN RULE & GITHUB PROTECTION: The main branch contains only tested, approved, and working code. GitHub is configured to block any direct modifications to main. If you try to push directly to main, the server will block you with an error. You MUST create a separate branch for each task, work locally, and ask for permission to merge only when the task is finished.
 
-Follow these exact 5 steps every time you start a new task on the Gantt chart (the commands are identical on Windows, Mac, and Linux):
+##Follow these exact 5 steps every single day you work on the project (the commands are identical on Windows, Mac, and Linux):
 
 ### Step 1: Update Your Local Code (Pull)
 You never have to git clone again. To check if your teammates have added new features to main while you were away, and download them to your PC:
 
 Bash
-Go in the local folder:
+ 1. Open terminal and enter the local folder
 cd cyber-grid-sim-team-c
 
-Bash
-Move to the main branch:
+ 2. Move to the main branch
 git checkout main
 
-Bash
-Download the latest approved updates from the server:
+ 3. Download the latest approved updates from the server
 git pull
 Result: Your PC is now synced with the team's latest official version.
 
@@ -82,21 +77,24 @@ IMMEDIATELY after running git pull, and BEFORE writing a single line of code, cr
 You must create a new branch for every single Gantt task (do not reuse old branches):
 
 Bash
-Replace with the ID and name of your current task:
+Replace with the ID and name of your current task
 git checkout -b feat/t1.1-your-task-name
+(Examples: git checkout -b feat/t1.1-ieee14-model, git checkout -b feat/t2.1-ns3-topology).
 
-(Examples: git checkout -b feat/t1.1-ieee14-model, git checkout -b feat/t2.1-ns3-topology, git checkout -b docs/t0.3-icd-architecture).
+### Step 3: Work Locally and Save Daily Progress (Add + Commit)
+Now you are in your safe, isolated space. Open the Dev Container (if you haven't already) and start coding.
 
-### Step 3: Work Locally for Days or Weeks (Commit)
-Now you are in your safe, isolated space. You will work on your task for several days or weeks. You do not need to upload (push) to GitHub every day. Instead, save your progress locally on your PC by taking "snapshots" (commit) whenever you complete a small, working piece:
+You do not need to upload (push) to GitHub every day. Instead, save your progress locally on your PC by taking "snapshots" (commit) whenever you finish working for the day or complete a small piece.
+
+To save your progress, you MUST run BOTH commands in sequence:
 
 Bash
-Prepare all modified files
+ 1. Prepare all modified files (put them in the staging cart)
 git add .
 
-Take the snapshot and describe what you did
+ 2. Take the snapshot to permanently save them (checkout the cart)
 git commit -m "Drafted the first part of the task"
-You can repeat Step 3 (Write code -> git add . -> git commit) as many times as you want while working locally.
+You can repeat Step 3 (Write code -> git add . -> git commit) every day for weeks while working locally. Just remember that add alone doesn't save your progress without the commit!
 
 ### Step 4: Run Tests and Upload Your FINISHED Task to GitHub (Push)
 ONLY when the entire task is 100% complete, verify first that all automated tests pass (see Phase 3 below) by running this in the container terminal:
@@ -124,6 +122,11 @@ GitHub will automatically start the Tests (CI). Wait 30 seconds for the green ch
 Due to branch protection rules, the Merge button will be disabled until a teammate reviews the work. Message the WhatsApp group and ask a teammate to go to GitHub, review your Pull Request, and approve it.
 
 Once you receive 1 approval (and tests are green), click Merge pull request. Your work is officially part of main!
+
+How to Close Your Work at the End of the Day
+On VS Code: Click the green rectangle in the bottom-left and choose Close Remote Connection (or simply close the VS Code window).
+
+On Docker Desktop: If you want to free up your PC's RAM when you are done studying, open Docker Desktop, go to Containers, and press the Stop (⏹️) button next to the project container.
 
 ## 🧪 Phase 3: Automated Tests (Pytest & GitHub Actions)
 The tests/ folder contains automated tests that protect the project from syntax errors, broken libraries, or JSON messages that violate the ICD (shared/schemas.py).
