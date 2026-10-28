@@ -1,138 +1,193 @@
 # ⚡ Cyber-Attack & Defense Simulator - Team C
 
-Welcome to the official Team C repository (Letizia, Simone, Shayan, Soheil).  
-This manual explains our team workflow so we don't overwrite or break each other's code.
+Welcome to the official Team C repository (Letizia Grassi, Simone Romano, Shayan Khoshrou, Soheil Tavakoli).
+This manual explains how to configure your PC for the first time, how to use the Docker virtual environment, how to work daily with Git without overwriting each other's code, and how to use automated tests.
 
 ---
 
-## 🛠️ Phase 0: Grant Access (Simone only)
-
-1. Go to the repository page on GitHub.
+## 🛠️ Phase 0: Grant Access to the Team (Simone only)
+1. Go to the repository's main page on GitHub.
 2. Click **Settings** > **Collaborators** > **Add people**.
 3. Add the GitHub usernames for Letizia, Shayan, and Soheil.
 
 ---
 
-## 📥 Phase 1: The First Time (Clone)
+## 💻 Phase 1: The First Time (Clone + Docker & Dev Container Setup)
+**You only do this ONCE.** This links a folder on your PC to the GitHub server and starts the Linux "virtual computer" (Dev Container) which already contains Python 3.10, C++, `pandapower`, `HELICS`, `FastAPI`, and `pytest` pre-installed.
 
-**You only do this ONCE.** This links a folder on your PC to the GitHub server.
+### Step 1.1: Software Prerequisites (Windows or Mac)
+Before starting, ensure you have the following installed on your PC:
+1. **Git** (On Windows install *Git for Windows*; on Mac it is usually pre-installed).
+2. **Visual Studio Code (VS Code)**.
+3. **Docker Desktop** (Download from the official Docker website, install it, and **run it** until the whale icon is steady and active).
+   * *Tip for Mac (Apple Silicon M1/M2/M3/M4) and Windows:* Open Docker Desktop Settings (⚙️) > **Resources** > set the **Memory (RAM)** to at least **6 GB or 8 GB**, then click *Apply & Restart*.
+4. Open VS Code, go to the **Extensions** section (the four squares icon on the left), and install the official **Dev Containers** extension by Microsoft.
 
-1. Open your terminal.
+### Step 1.2: Download (Clone) the Repository to Your PC
+Never download the project as a `.zip` file from the website, otherwise Git will not work. Use the terminal to link a folder on your PC to the GitHub server:
+1. Open your terminal (or Git Bash / PowerShell on Windows).
 2. Navigate to where you want to save the project (e.g., `cd Documents`).
 3. Clone the repository:
    ```bash
    git clone [https://github.com/rimosoma/cyber-grid-sim-team-c.git](https://github.com/rimosoma/cyber-grid-sim-team-c.git)
+Enter the project folder:
 
+Bash
+cd cyber-grid-sim-team-c
+### Step 1.3: Enter the Docker Dev Container from VS Code
+To avoid the "it works on my machine" problem, we do not use the Python installed on Windows or Mac. Instead, we all work inside the Docker container configured in the hidden .devcontainer folder:
 
+Make sure Docker Desktop is open and running.
 
-4. Enter the project folder:
-```bash
+Open VS Code, click File > Open Folder..., and select the cyber-grid-sim-team-c folder.
+
+Click the green >< button in the bottom-left corner of VS Code (or press F1 / Cmd+Shift+P / Ctrl+Shift+P) and select "Dev Containers: Reopen in Container".
+
+The first time, VS Code will take about 3-5 minutes to download Linux (Debian Bookworm) and install all the libraries from requirements.txt. Subsequent times it will open in 3 seconds.
+
+How to verify you are inside the container?
+
+In the bottom-left green rectangle, you will read: Dev Container: Cyber-Grid Simulator (Team C).
+
+Open the integrated terminal in VS Code (Terminal > New Terminal) and type pip list: you will see pandapower, helics, scipy, fastapi, and pytest ready to go!
+
+Step 1.4: How to Close Your Work at the End of the Day
+On VS Code: Click the green rectangle in the bottom-left and choose Close Remote Connection (or simply close the VS Code window).
+
+On Docker Desktop: If you want to free up your PC's RAM when you are done studying, open Docker Desktop, go to Containers, and press the Stop (⏹️) button next to the project container.
+
+## 🔄 Phase 2: Daily Workflow (The Git Pipeline)
+⛔ GOLDEN RULE & GITHUB PROTECTION: The main branch contains only tested, approved, and working code. GitHub is configured to block any direct modifications to main. If you try to push directly to main, the server will block you with an error. You MUST create a separate branch for each task, work locally, and ask for permission to merge only when the task is finished.
+
+Follow these exact 5 steps every time you start a new task on the Gantt chart (the commands are identical on Windows, Mac, and Linux):
+
+### Step 1: Update Your Local Code (Pull)
+You never have to git clone again. To check if your teammates have added new features to main while you were away, and download them to your PC:
+
+Bash
+Go in the local folder:
 cd cyber-grid-sim-team-c
 
-```
-
-
-
----
-
-## 🔄 Phase 2: Daily Workflow (The Pipeline)
-
-⛔ **GOLDEN RULE & GITHUB PROTECTION:** The `main` branch contains only perfect, tested code. **GitHub blocks any direct modifications to `main`.** You MUST create a separate branch for each task, work there locally, and ask for permission to merge only when the task is fully finished.
-
-Follow this exact sequence every time you start a new task on the Gantt chart.
-
-*(Note: These commands are exactly the same on Windows, Mac, and Linux)*
-
-### Step 1: Update your local code (Pull)
-
-Always start by getting the latest approved team code from the server:
-
-```bash
+Bash
+Move to the main branch:
 git checkout main
+
+Bash
+Download the latest approved updates from the server:
 git pull
+Result: Your PC is now synced with the team's latest official version.
 
-```
+### Step 2: Create a NEW Branch for Your Task
+IMMEDIATELY after running git pull, and BEFORE writing a single line of code, create a new branch.Why do we do this? Think of main as an original master document locked in a safe. Creating a branch is like placing a transparent sheet of tracing paper over the original: you can draft, experiment, and make mistakes on your tracing paper without ever ruining the original.
+You must create a new branch for every single Gantt task (do not reuse old branches):
 
-### Step 2: Create a NEW Branch for the specific task
-
-**IMMEDIATELY after pulling, and BEFORE writing a single line of code**, create a new branch. A branch is like a temporary workspace. You must create a *new* branch for every single task on the Gantt chart (e.g., one for T-1.1, a new one for T-1.2, etc.).
-
-```bash
-# Replace with your actual task name
+Bash
+Replace with the ID and name of your current task:
 git checkout -b feat/t1.1-your-task-name
 
-```
+(Examples: git checkout -b feat/t1.1-ieee14-model, git checkout -b feat/t2.1-ns3-topology, git checkout -b docs/t0.3-icd-architecture).
 
-### Step 3: Work locally for days/weeks (Commit)
+### Step 3: Work Locally for Days or Weeks (Commit)
+Now you are in your safe, isolated space. You will work on your task for several days or weeks. You do not need to upload (push) to GitHub every day. Instead, save your progress locally on your PC by taking "snapshots" (commit) whenever you complete a small, working piece:
 
-Now you are in your safe space. You will likely work on this task for several days or weeks. **You don't need to upload (push) to GitHub every day.** Instead, save your progress locally on your PC by taking "snapshots" (commits) whenever a small part of your code is working:
-
-```bash
-# Add all changed files
+Bash
+Prepare all modified files
 git add .
 
-# Take a snapshot and describe what you did
+Take the snapshot and describe what you did
 git commit -m "Drafted the first part of the task"
+You can repeat Step 3 (Write code -> git add . -> git commit) as many times as you want while working locally.
 
-```
+### Step 4: Run Tests and Upload Your FINISHED Task to GitHub (Push)
+ONLY when the entire task is 100% complete, verify first that all automated tests pass (see Phase 3 below) by running this in the container terminal:
 
-*You can repeat Step 3 (Code -> Add -> Commit) as many times as you want while working on the task locally.*
+Bash
+pytest
+If everything is green (PASSED), send your branch to the GitHub server:
 
-### Step 4: Upload your FINISHED task to GitHub (Push)
-
-**ONLY when the entire task is 100% complete**, send your isolated branch to the GitHub server so the rest of the team can see it:
-
-```bash
+Bash
 git push -u origin YOUR_BRANCH_NAME
 
-```
+### Step 5: The Pull Request (Merging to main)
+Your finished code is online, but it is still in your isolated branch. To merge it into main:
 
-### Step 5: The Pull Request (Merging)
+Go to the repository page on GitHub.
 
-Your finished code is now online. To merge it into `main`:
+Click the green/yellow Compare & pull request button.
 
-1. Go to the repository page on GitHub.
-2. Click the yellow **Compare & pull request** button.
-3. Click **Create pull request**.
-4. Ask a teammate on WhatsApp to review and approve it. Once approved, it officially becomes part of `main`.
+Write a brief explanation of what you did and click Create pull request.
 
----
+Automated Check + Approval:
 
-## 📁 Phase 3: Folder Structure (Who does what)
+GitHub will automatically start the Tests (CI). Wait 30 seconds for the green checkmark ✅ to appear.
 
-Work **strictly** inside your assigned Work Package folders.
+Due to branch protection rules, the Merge button will be disabled until a teammate reviews the work. Message the WhatsApp group and ask a teammate to go to GitHub, review your Pull Request, and approve it.
 
-* `docs/` ➔ Requirements, ICD, Manuals
-* `wp1_power_grid/` ➔ pandapower physics simulation (**Shayan**)
-* `wp2_scada_network/` ➔ NS-3 topology & SCADA gateway (**Simone**)
-* `wp3_attack_generator/` ➔ DDoS and FDI logic (**Simone**)
-* `wp4_defense_module/` ➔ WLS Estimator and Chi-Squared test (**Letizia**)
-* `wp5_control_center/` ➔ Manual Control and OPF (**Shayan**)
-* `wp6_orchestrator_db/` ➔ HELICS sync and SQLite Database (**Letizia & Soheil**)
-* `wp7_dashboard/` ➔ React UI and FastAPI Backend (**Soheil**)
+Once you receive 1 approval (and tests are green), click Merge pull request. Your work is officially part of main!
 
----
+## 🧪 Phase 3: Automated Tests (Pytest & GitHub Actions)
+The tests/ folder contains automated tests that protect the project from syntax errors, broken libraries, or JSON messages that violate the ICD (shared/schemas.py).
 
-## 🆘 Troubleshooting (Cheat Sheet)
+How to Run Tests on Your PC (Before Pushing)
+Open the terminal inside the VS Code Dev Container and type:
 
-**I messed up my code and want to undo all UNSAVED (uncommitted) changes:**
+Bash
+pytest -v
+What happens: Pytest will execute all tests/test_*.py files.
 
-```bash
+If you see green PASSED text, your code is healthy and you can git push.
+
+If you see red FAILED text, read the error message in the terminal, fix your code, and re-run pytest -v until everything turns green.
+
+How to Add New Tests for Your Work Package
+As you develop your modules (wp1...wp7), add your unit tests in the tests/ folder:
+
+tests/test_environment.py ➔ Checks folder structure, syntax of all .py files, baseline pandapower IEEE 14-bus, and HELICS installation.
+
+tests/test_icd_schemas.py ➔ Checks that JSON payloads comply with the ICD (shared/schemas.py).
+
+You can create new files (e.g., tests/test_wp1_grid.py or tests/test_wp4_defense.py): just ensure the filename and the test functions inside start with test_, and both pytest and GitHub will run them automatically!
+
+## 📁 Phase 4: Folder Structure (Who Does What)
+Everyone must work exclusively inside their assigned Work Package folders to avoid conflicts:
+
+.devcontainer/ ➔ Linux Docker environment setup for VS Code
+
+.github/workflows/ ➔ GitHub Automated Tests (CI) setup
+
+config/ ➔ Global HELICS config and JSON attack schedule
+
+docs/ ➔ Official docs: SysReq, ICD.md, meeting logs
+
+shared/ ➔ Shared data schemas (schemas.py) and constants (constants.py)
+
+tests/ ➔ Automated tests run with pytest and GitHub Actions
+
+wp1_power_grid/ ➔ pandapower physics simulation (IEEE 14-bus) and actuators (Shayan)
+
+wp2_scada_network/ ➔ NS-3 topology, SCADA protocol, and latency (Simone)
+
+wp3_attack_generator/ ➔ Scheduler and DDoS/FDI attack injection (Simone)
+
+wp4_defense_module/ ➔ WLS State Estimator and Chi-Squared Bad Data Detection (Letizia)
+
+wp5_control_center/ ➔ Manual Control and Auto-OPF (Shayan)
+
+wp6_orchestrator_db/ ➔ HELICS Sync and SQLite Database (Letizia & Soheil)
+
+wp7_dashboard/ ➔ React Web UI and FastAPI Backend (Soheil)
+
+## 🆘 Phase 5: Troubleshooting (Cheat Sheet)
+I messed up my code and want to undo all UNSAVED (uncommitted) changes:
+
+Bash
 git restore .
+I forgot which branch I am on or what files I modified:
 
-```
-
-**I forgot which branch I am on or what files I modified:**
-
-```bash
+Bash
 git status
+I tried to git pull but I got an error and it blocked me:
+This means you have local changes that are not yet committed. Save them first (git add . and git commit -m "saving state") or undo them (git restore .), then try git pull again.
 
-```
-
-**I tried to `git pull` but I got a weird error and it blocked me:**
-
-This means you have uncommitted changes on your PC. Save them first (`git add .` + `git commit -m "saving before pull"`) and then try `git pull` again.
-
-```
-
-```
+I added a new Python library to requirements.txt, how do I update the Dev Container?
+Press F1 (or Cmd+Shift+P / Ctrl+Shift+P) in VS Code and click on Dev Containers: Rebuild Container.
