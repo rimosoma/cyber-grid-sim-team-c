@@ -3,15 +3,6 @@
 Welcome to the official Team C repository (Letizia Grassi, Simone Romano, Shayan Khoshrou, Soheil Tavakoli).
 This manual explains how to configure your PC for the first time, how to use the Docker virtual environment, how to work daily with Git without overwriting each other's code, and how to use automated tests.
 
----
-
-## 🛠️ Phase 0: Grant Access to the Team (Simone only)
-1. Go to the repository's main page on GitHub.
-2. Click **Settings** > **Collaborators** > **Add people**.
-3. Add the GitHub usernames for Letizia, Shayan, and Soheil.
-
----
-
 ## 💻 Phase 1: The First Time (Clone + Setup)
 **⚠️ ATTENTION: You only do this phase ONCE in your life.** This phase is strictly for downloading the repository for the first time and setting up the software. **Do not use this phase for your daily coding work.** For your daily programming routine, jump to Phase 2.
 
