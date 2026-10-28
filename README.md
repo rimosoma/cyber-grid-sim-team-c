@@ -73,11 +73,11 @@ git checkout -b feat/t1.1-your-task-name
 (Examples: git checkout -b feat/t1.1-ieee14-model, git checkout -b feat/t2.1-ns3-topology).
 
 ### Step 3: Work Locally and Save Daily Progress (Add + Commit)
-Now you are in your safe, isolated space. Open the Dev Container (if you haven't already) and start coding.
+Now you are in your safe, isolated space. Open the Dev Container (if you haven't already) and start coding. 
 
-You do not need to upload (push) to GitHub every day. Instead, save your progress locally on your PC by taking "snapshots" (commit) whenever you finish working for the day or complete a small piece.
+**You do not need to upload (push) to GitHub every day.** Instead, save your progress locally on your PC by taking "snapshots" (`commit`) whenever you finish working for the day or complete a small piece. 
 
-To save your progress, you MUST run BOTH commands in sequence:
+**To save your progress, you MUST run BOTH commands in sequence:**
 
 Bash
  1. Prepare all modified files (put them in the staging cart)
@@ -86,6 +86,8 @@ git add .
  2. Take the snapshot to permanently save them (checkout the cart)
 git commit -m "Drafted the first part of the task"
 You can repeat Step 3 (Write code -> git add . -> git commit) every day for weeks while working locally. Just remember that add alone doesn't save your progress without the commit!
+
+When you are done coding for the day: Once you have saved your work with the commands above, you can safely close the VS Code window and stop the container in Docker Desktop (see "How to Close Your Work at the End of the Day" below).
 
 ### Step 4: Run Tests and Upload Your FINISHED Task to GitHub (Push)
 ONLY when the entire task is 100% complete, verify first that all automated tests pass (see Phase 3 below) by running this in the container terminal:
